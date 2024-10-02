@@ -106,6 +106,10 @@ bool wxWebViewEdgeImpl::Create()
     if (!m_customUserAgent.empty())
         options->put_AdditionalBrowserArguments(
             wxString::Format("--user-agent=\"%s\"", m_customUserAgent).wc_str());
+
+    if (!m_proxy.empty())
+        options->put_AdditionalBrowserArguments(
+            wxString::Format("--proxy-server=\"%s\"", m_proxy).wc_str());
 #endif
 
     HRESULT hr = wxCreateCoreWebView2EnvironmentWithOptions(
@@ -837,6 +841,17 @@ bool wxWebViewEdge::SetUserAgent(const wxString& userAgent)
 
     // TODO: As of Edge SDK 1.0.790 an experimental API to set the user agent
     // is available. Reimplement using m_impl->GetSettings() when it's stable.
+}
+
+bool wxWebViewEdge::SetProxy(const wxString& proxy)
+{
+    m_impl->m_proxy = proxy;
+    // Can currently only be set before Create()
+    wxCHECK_MSG(!m_impl->m_webViewController, false, "Can't be called after Create()");
+    if (m_impl->m_webViewController)
+        return false;
+    else
+        return true;
 }
 
 void* wxWebViewEdge::GetNativeBackend() const

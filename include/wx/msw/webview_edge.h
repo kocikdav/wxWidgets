@@ -87,6 +87,7 @@ public:
     virtual bool IsAccessToDevToolsEnabled() const wxOVERRIDE;
 
     virtual bool SetUserAgent(const wxString& userAgent) wxOVERRIDE;
+    virtual bool SetProxy(const wxString& proxy) wxOVERRIDE;
 
     virtual void RunScriptAsync(const wxString& javascript, void* clientData = NULL) const wxOVERRIDE;
     virtual bool AddScriptMessageHandler(const wxString& name) wxOVERRIDE;

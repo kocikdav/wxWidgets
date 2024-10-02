@@ -967,6 +967,7 @@ public:
     */
     virtual bool SetUserAgent(const wxString& userAgent);
 
+    virtual bool SetProxy(const wxString& proxy);
     /**
         Returns the current user agent string for the web view.
 

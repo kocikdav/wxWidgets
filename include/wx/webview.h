@@ -188,6 +188,7 @@ public:
     virtual void RegisterHandler(wxSharedPtr<wxWebViewHandler> handler) = 0;
     virtual void Reload(wxWebViewReloadFlags flags = wxWEBVIEW_RELOAD_DEFAULT) = 0;
     virtual bool SetUserAgent(const wxString& userAgent) { wxUnusedVar(userAgent); return false; }
+    virtual bool SetProxy(const wxString& proxy) { wxUnusedVar(proxy); return false; }
     virtual wxString GetUserAgent() const;
 
     // Script

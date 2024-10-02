@@ -64,6 +64,7 @@ public:
     wxVector<wxString> m_userScriptIds;
     wxString m_scriptMsgHandlerName;
     wxString m_customUserAgent;
+    wxString m_proxy;
 
     // WebView Events tokens
     EventRegistrationToken m_navigationStartingToken = { };
