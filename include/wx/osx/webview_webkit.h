@@ -115,6 +115,7 @@ private:
     OSXWebViewPtr m_webView;
     wxStringToWebHandlerMap m_handlers;
     wxString m_customUserAgent;
+    wxString m_proxy;
 
     WX_NSObject m_navigationDelegate;
     WX_NSObject m_UIDelegate;

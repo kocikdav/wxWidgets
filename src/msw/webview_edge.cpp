@@ -110,6 +110,10 @@ bool wxWebViewEdgeImpl::Create()
     if (!m_proxy.empty())
         options->put_AdditionalBrowserArguments(
             wxString::Format("--proxy-server=\"%s\"", m_proxy).wc_str());
+
+    if (m_allow_http)
+        options->put_AdditionalBrowserArguments(
+            wxString("--allow-running-insecure-content").wc_str());
 #endif
 
     HRESULT hr = wxCreateCoreWebView2EnvironmentWithOptions(
@@ -852,6 +856,13 @@ bool wxWebViewEdge::SetProxy(const wxString& proxy)
         return false;
     else
         return true;
+}
+
+bool wxWebViewEdge::void AllowHttp()
+{
+    m_impl->m_allow_http = true;
+    // Can currently only be set before Create()
+    wxCHECK_MSG(!m_impl->m_webViewController, false, "Can't be called after Create()");
 }
 
 void* wxWebViewEdge::GetNativeBackend() const

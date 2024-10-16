@@ -189,6 +189,7 @@ public:
     virtual void Reload(wxWebViewReloadFlags flags = wxWEBVIEW_RELOAD_DEFAULT) = 0;
     virtual bool SetUserAgent(const wxString& userAgent) { wxUnusedVar(userAgent); return false; }
     virtual bool SetProxy(const wxString& proxy) { wxUnusedVar(proxy); return false; }
+    virtual void AllowHttp() {}
     virtual wxString GetUserAgent() const;
 
     // Script

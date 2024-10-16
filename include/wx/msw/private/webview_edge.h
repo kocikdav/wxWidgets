@@ -65,6 +65,7 @@ public:
     wxString m_scriptMsgHandlerName;
     wxString m_customUserAgent;
     wxString m_proxy;
+    bool m_allow_http {false};
 
     // WebView Events tokens
     EventRegistrationToken m_navigationStartingToken = { };
