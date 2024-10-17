@@ -103,17 +103,18 @@ bool wxWebViewEdgeImpl::Create()
     auto options =
         Make<CoreWebView2EnvironmentOptions>();
 
+    wxString additionalArgs;
     if (!m_customUserAgent.empty())
-        options->put_AdditionalBrowserArguments(
-            wxString::Format("--user-agent=\"%s\"", m_customUserAgent).wc_str());
+        additionalArgs += wxString::Format("--user-agent=\"%s\"", m_customUserAgent);
 
     if (!m_proxy.empty())
-        options->put_AdditionalBrowserArguments(
-            wxString::Format("--proxy-server=\"%s\"", m_proxy).wc_str());
+            additionalArgs += wxString::Format(" --proxy-server=\"%s\"", m_proxy);
 
     if (m_allow_http)
-        options->put_AdditionalBrowserArguments(
-            wxString("--allow-running-insecure-content").wc_str());
+            additionalArgs += wxString(" --disable-features=BlockInsecurePrivateNetworkRequests");
+
+    if (!additionalArgs.empty())
+        options->put_AdditionalBrowserArguments(additionalArgs.wc_str());
 #endif
 
     HRESULT hr = wxCreateCoreWebView2EnvironmentWithOptions(
