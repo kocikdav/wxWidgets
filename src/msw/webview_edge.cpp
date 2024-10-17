@@ -860,9 +860,8 @@ bool wxWebViewEdge::SetProxy(const wxString& proxy)
 
 void wxWebViewEdge::AllowHttp()
 {
+    // Works only before Create() 
     m_impl->m_allow_http = true;
-    // Can currently only be set before Create()
-    wxCHECK_MSG(!m_impl->m_webViewController, false, "Can't be called after Create()");
 }
 
 void* wxWebViewEdge::GetNativeBackend() const
