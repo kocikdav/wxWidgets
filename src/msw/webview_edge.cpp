@@ -858,7 +858,7 @@ bool wxWebViewEdge::SetProxy(const wxString& proxy)
         return true;
 }
 
-bool wxWebViewEdge::void AllowHttp()
+void wxWebViewEdge::AllowHttp()
 {
     m_impl->m_allow_http = true;
     // Can currently only be set before Create()
